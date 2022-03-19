@@ -12,20 +12,19 @@ class Suggestions extends React.Component{
     componentDidMount() {
         fetch(`https://photo-app-gbburleigh.herokuapp.com/api/suggestions/`, {
             method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': getCookie('csrf_access_token')
-            },
+            headers: getHeaders(),
         })
         .then(response => response.json())
         .then(data => {
             var d = []
-            for (const elem of data){
-                if (elem.username != this.props.user.username){
-                    d.push(elem)
+            if (data.length > 0){
+                for (const elem of data){
+                    if (elem.username != this.props.user.username){
+                        d.push(elem)
+                    }
                 }
+                this.setState({suggestions: d})
             }
-            this.setState({suggestions: d})
         });
     }
 
