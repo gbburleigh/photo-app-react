@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCookie } from './utils';
+import { getCookie, getHeaders } from './utils';
 import Suggestion from './Suggestion';
 
 class Suggestions extends React.Component{
@@ -32,10 +32,7 @@ class Suggestions extends React.Component{
     requerySuggestion() {
         fetch(`https://photo-app-gbburleigh.herokuapp.com/api/suggestions/`, {
             method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': getCookie('csrf_access_token')
-            },
+            headers: getHeaders()
         })
         .then(response => response.json())
         .then(data => {
