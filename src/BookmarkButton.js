@@ -24,10 +24,7 @@ class BookmarkButton extends React.Component {
         const postData = { 'post_id': this.props.postId };
         fetch(`https://photo-app-gbburleigh.herokuapp.com/api/bookmarks/`, {
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': getCookie('csrf_access_token')
-                },
+                headers: getHeaders(),
                 body: JSON.stringify(postData)
             })
             .then(response => response.json())
@@ -39,10 +36,7 @@ class BookmarkButton extends React.Component {
     unsave() {
         fetch(`https://photo-app-gbburleigh.herokuapp.com/api/bookmarks/${this.props.saveId}`, {
             method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': getCookie('csrf_access_token')
-            }
+            headers: getHeaders()
         })
         .then(response => response.json())
         .then(data => {

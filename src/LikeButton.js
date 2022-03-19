@@ -24,10 +24,7 @@ class LikeButton extends React.Component {
         const postData = {};
         fetch(`https://photo-app-gbburleigh.herokuapp.com/api/posts/${this.props.postId}/likes/`, {
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': getCookie('csrf_access_token')
-                },
+                headers: getHeaders(),
                 body: JSON.stringify(postData)
             })
             .then(response => response.json())
@@ -42,10 +39,7 @@ class LikeButton extends React.Component {
         .then(user => {
             fetch(`https://photo-app-gbburleigh.herokuapp.com/api/posts/${this.props.postId}/likes/${user.id}`, {
                 method: "DELETE",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': getCookie('csrf_access_token')
-                }
+                headers: getHeaders()
             })
             .then(response => response.json())
             .then(data => {
