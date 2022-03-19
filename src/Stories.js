@@ -11,10 +11,7 @@ class Stories extends React.Component{
     componentDidMount() {
         fetch("https://photo-app-gbburleigh.herokuapp.com/api/stories/", {
             method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': getCookie('csrf_access_token')
-            }
+            headers: getHeaders()
         })
         .then(response => response.json())
         .then(data => {

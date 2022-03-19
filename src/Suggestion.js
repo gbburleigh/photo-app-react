@@ -32,10 +32,7 @@ class Suggestion extends React.Component{
         
         fetch("https://photo-app-gbburleigh.herokuapp.com/api/following/", {
             method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': getCookie('csrf_access_token')
-            },
+            headers: getHeaders(),
             body: JSON.stringify(postData)
         })
         .then(response => response.json())
@@ -47,10 +44,7 @@ class Suggestion extends React.Component{
     unfollow(){
         fetch(`https://photo-app-gbburleigh.herokuapp.com/api/following/${this.props.userId}`, {
             method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': getCookie('csrf_access_token')
-            }
+            headers: getHeaders()
         })
         .then(response => response.json())
         .then(data => {
