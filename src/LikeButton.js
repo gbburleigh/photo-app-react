@@ -34,7 +34,7 @@ class LikeButton extends React.Component {
     }
 
     unlike() {
-        fetch('https://photo-app-gbburleigh.herokuapp.com/api/profile', {method: "GET", headers: getHeaders()})
+        fetch('https://photo-app-gbburleigh.herokuapp.com/api/profile', {headers: getHeaders()})
         .then(response => response.json())
         .then(user => {
             fetch(`https://photo-app-gbburleigh.herokuapp.com/api/posts/${this.props.postId}/likes/${user.id}`, {
